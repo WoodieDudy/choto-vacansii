@@ -11,8 +11,8 @@ endef
 
 start:
 	cd backend/saiga; python -m poetry shell
-	cd backend/saiga; torch-model-archiver --model-name saiga --version 1.0 --export-path model_store --extra-files conversation.py --handler handler.py -f && torchserve --start --ncs --ts-config config.properties
-#        $(check_torchservices)
+	cd backend/saiga; torch-model-archiver --model-name saiga --version 1.0 --export-path model_store --extra-files conversation.py --handler handler.py -f && torchserve --start --ncs --ts-config config.properties \
+	$(check_torchservices)
 	cd frontend; bash run.sh
 
 stop:
