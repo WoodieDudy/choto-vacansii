@@ -1,3 +1,5 @@
+.PHONY: frontend start
+
 define check_torchservices
 	@echo "Waiting for torchservices to start"
 	@while [ "$$(curl -s http://localhost:8080/ping | jq '.status' | tr -d '"')" != "Healthy" ] ; do \
@@ -13,3 +15,6 @@ start: build_cpu
 
 stop:
 	@docker-compose down
+
+frontend:
+	cd front; bash run.sh
