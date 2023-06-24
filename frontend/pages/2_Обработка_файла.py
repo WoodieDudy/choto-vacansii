@@ -69,7 +69,7 @@ def handle_upload_tab(session):
         else:
             total = len(session['json_data'])
 
-            pbar = st.progress(0, text='Операция запущена. Это может занять много времени', total=total)
+            pbar = st.progress(0, text='Операция запущена. Это может занять много времени')
 
             session['result'] = []
 
