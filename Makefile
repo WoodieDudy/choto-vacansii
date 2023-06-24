@@ -1,4 +1,4 @@
-.PHONY: frontend start
+.PHONY: start stop
 
 define check_torchservices
 	@echo "Waiting for torchservices to start"
@@ -10,10 +10,11 @@ define check_torchservices
 endef
 
 start:
-	cd backend; python -m poetry shell; torchserve --start --ncs --ts-config config.properties
+	cd backend/saiga; python -m poetry shell;
+	torchserve --torch-model-archiver --model-name saiga --version 1.0 --export-path model_store --extra-files conversation.py --handler handler.py -f
+	cd backend/saiga; torchserve --start --ncs --ts-config config.properties;
 	cd frontend; bash run.sh
 	$(check_torchservices)
-
 
 stop:
 	cd backend; python -m poetry shell;
