@@ -4,7 +4,7 @@ import streamlit as st
 import streamlit_tags
 
 from common.export import export_as_txt, export_as_json
-from common.generation import generate
+from common.generation import generate, DEFAULT_COLUMNS
 
 st.set_page_config(
     page_title='Интерактивный режим',
@@ -32,12 +32,7 @@ def init_session():
     if 'text' not in st.session_state:
         st.session_state.text = ''
     if 'fields' not in st.session_state:
-        st.session_state.fields = [
-            'условия',
-            'требования к соискателю',
-            'описание вакансии',
-            'обязанности',
-        ]
+        st.session_state.fields = DEFAULT_COLUMNS.copy()
     if 'response' not in st.session_state:
         st.session_state.response = {}
     return st.session_state
@@ -63,11 +58,6 @@ def handle_int_tab(session):
             else:
                 for sug in pre_suggestions:
                     col1.warning(sug)
-
-    if reset_col.button('Сбросить'):
-        st.session_state.clear()
-        init_session()
-        st.experimental_rerun()
 
     for st_oc, oc in zip(st_output_columns, session['fields']):
         session['response'][oc] = st_oc.text_area(oc, value=session['response'].get(oc, ''), height=100)
