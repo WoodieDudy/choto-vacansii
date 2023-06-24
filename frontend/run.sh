@@ -1,1 +1,1 @@
-streamlit run '1_Чисто_показуха.py'
+streamlit run '1_Интерактивный_режим.py'

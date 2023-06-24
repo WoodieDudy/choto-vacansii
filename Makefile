@@ -9,12 +9,12 @@ define check_torchservices
 	@echo "Saiga is ready"
 endef
 
-start: build_cpu
-	@docker-compose up -d
+start:
+	cd backend; python -m poetry shell; torchserve --start --ncs --ts-config config.properties
+	cd frontend; bash run.sh
 	$(check_torchservices)
 
-stop:
-	@docker-compose down
 
-frontend:
-	cd front; bash run.sh
+stop:
+	cd backend; python -m poetry shell;
+	torchserve --stop

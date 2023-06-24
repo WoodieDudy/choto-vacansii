@@ -18,6 +18,7 @@ def export_as_txt(fields: dict):
 
 
 def export_as_csv(json_data: list[dict]):
+    print(json_data[0])
     return pd.DataFrame(json_data).to_csv(index=False)
 
 
