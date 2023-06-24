@@ -4,7 +4,7 @@ from typing import Iterable
 import streamlit as st
 import streamlit_tags
 
-from utils.export import export_as_txt, export_as_json
+from common.export import export_as_txt, export_as_json
 
 st.set_page_config(
     page_title='Интерактивный режим',
