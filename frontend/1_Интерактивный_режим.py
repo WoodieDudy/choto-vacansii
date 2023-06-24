@@ -1,44 +1,15 @@
-import re
-import json
 from typing import Iterable
 
-import requests
 import streamlit as st
 import streamlit_tags
 
 from common.export import export_as_txt, export_as_json
+from common.generation import generate
 
 st.set_page_config(
     page_title='Интерактивный режим',
     layout='wide'
 )
-
-
-def extract_field(text: str, field: str) -> str:
-    match = re.findall(rf"{field}\s*:\s*(.+?);", text)
-    best_match = ''
-    for m in match:
-        if m.strip() and len(m) > len(best_match):
-            best_match = m
-
-    return best_match if best_match else None
-
-
-def generate(text: str, fields: list) -> dict:
-    try:
-        resp = requests.post('https://bert-is-bad.serveo.net/predictions/saiga',
-                             json={'text': text, 'fields': fields}, timeout=60)
-        resp.raise_for_status()
-    except Exception as e:
-        print('Error:', e)
-        return None
-
-    try:
-        print(resp.content.decode('utf-8'))
-        return json.loads(resp.content.decode('utf-8'))
-    except Exception as e:
-        print('Error:', e)
-        return None
 
 
 def get_pregen_suggestions(text: str) -> Iterable[str]:
