@@ -19,6 +19,7 @@ sentencepiece = "^0.1.99"
 accelerate = "^0.20.3"
 streamlit = "^1.23.1"
 streamlit-tags = "^1.2.8"
+openpyxl = "^3.1.2"
 
 [tool.poetry.group.dev.dependencies]
 flake8 = "^6.0.0"
