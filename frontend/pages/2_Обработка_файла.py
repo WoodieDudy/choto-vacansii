@@ -46,7 +46,7 @@ def handle_upload_tab(session):
     if df_file:
         file_name = df_file.name
         try:
-            if file_name.endswith('.xslx'):
+            if file_name.endswith('.xlsx'):
                 session['json_data'] = pd.read_excel(df_file, index_col=False).to_json()
             elif file_name.endswith('.csv'):
                 session['json_data'] = pd.read_csv(df_file, index_col=False).to_json()
