@@ -65,11 +65,13 @@ def handle_int_tab(session):
                     col1.warning(sug)
 
     if reset_col.button('Сбросить'):
+        st.session_state.clear()
+        init_session()
         st.experimental_rerun()
 
     for st_oc, oc in zip(st_output_columns, session['fields']):
-        if session['response'] and oc in session['response']:
-            st_oc.text_area(oc, value=session['response'][oc] or '', height=100)
+        if session['response']:
+            st_oc.text_area(oc, value=session['response'].get(oc, ''), height=100)
         else:
             st_oc.text_area(oc, value='', disabled=True, height=100)
 

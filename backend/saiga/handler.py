@@ -30,9 +30,9 @@ class ModelHandler(BaseHandler):
 
         self.tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME, use_fast=False)
         self.generation_config = GenerationConfig.from_pretrained(MODEL_NAME)
-        setattr(self.generation_config, 'temperature', 0.6)
-        setattr(self.generation_config, 'top_k', 15)
-        print(self.generation_config)
+        setattr(self.generation_config, 'temperature', 0.2)
+        setattr(self.generation_config, 'top_p', 0.95)
+        setattr(self.generation_config, 'top_k', 20)
 
     def initialize(self, context):
         properties = context.system_properties
