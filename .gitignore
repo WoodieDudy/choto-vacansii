@@ -468,3 +468,5 @@ venv/
 
 # Mac files
 .DS_Store
+
+.temp.xlsx
