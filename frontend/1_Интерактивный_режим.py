@@ -70,10 +70,7 @@ def handle_int_tab(session):
         st.experimental_rerun()
 
     for st_oc, oc in zip(st_output_columns, session['fields']):
-        if session['response']:
-            st_oc.text_area(oc, value=session['response'].get(oc, ''), height=100)
-        else:
-            st_oc.text_area(oc, value='', disabled=True, height=100)
+        session['response'][oc] = st_oc.text_area(oc, value=session['response'].get(oc, ''), height=100)
 
 
 def handle_settings_tab(session):
