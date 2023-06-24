@@ -15,7 +15,7 @@ from src.conversation import Conversation, generate
 logger = logging.getLogger(__name__)
 
 MODEL_ZIP = 'model.zip'
-MODEL_NAME = ''
+MODEL_NAME = 'IlyaGusev/saiga_13b_lora'
 RAW_WEIGHTS = ''
 CHECKPOINT = ''
 
