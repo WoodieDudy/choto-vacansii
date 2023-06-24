@@ -47,9 +47,11 @@ def handle_upload_tab(session):
         file_name = df_file.name
         try:
             if file_name.endswith('.xlsx'):
-                session['json_data'] = pd.read_excel(df_file, index_col=False).to_json()
+                session['json_data'] = pd.read_excel(df_file, index_col=False).to_json(orient='records',
+                                                                                       force_ascii=False)
             elif file_name.endswith('.csv'):
-                session['json_data'] = pd.read_csv(df_file, index_col=False).to_json()
+                session['json_data'] = pd.read_csv(df_file, index_col=False).to_json(orient='records',
+                                                                                     force_ascii=False)
             else:
                 session['json_data'] = json.load(df_file)
         except Exception:
