@@ -1,0 +1,4 @@
+pandas==1.5.3
+streamlit==1.23.1
+streamlit_tags==1.2.8
+reportlab~=4.0.4
